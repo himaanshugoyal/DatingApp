@@ -10,3 +10,9 @@ The Initial Commit Contains
 8. Bind data from the API to the html to display it on the page.
 9. Add support for bootstrap and font-awesome
 
+Security
+1. Storing Password in the databse
+  - To add more security Add Salt to a password.
+    Salt is randomly generated string and added to the password, before the hashing takes place
+    The same password will produce many differnt hashses
+    Its stored in the database
