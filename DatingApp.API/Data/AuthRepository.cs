@@ -1,6 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using DatingApp.API.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace DatingApp.API.Data
 {
@@ -21,15 +22,38 @@ namespace DatingApp.API.Data
             _context = context;
 
         }
-        public Task<User> Login(string username, string password)
+        public async Task<User> Login(string username, string password)
         {
-            throw new System.NotImplementedException();
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Username == username);
+
+            if(user == null)
+                return  null;
+
+            if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
+                return null;
+
+            return user;
         }
+
+        private bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
+        {
+               using(var hmac = new System.Security.Cryptography.HMACSHA512(passwordSalt)){
+            
+                var computedHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+                //Comparing each letter of byte array
+                for(int i = 0; i<computedHash.Length;i++){
+                    if (computedHash[i] != passwordHash[i])
+                        return false;
+                }
+            }
+            return false;
+        }
+
         /* Note: Register
-        By default the variable values are passed by values in function
-        To pass the values by reference we use the 'out' keyword. Benefit of doing this, when we are going to update 
-        the values of passwordHash in our function CreatePasswordHash, their values are going to be updated in the Register function
-         */
+By default the variable values are passed by values in function
+To pass the values by reference we use the 'out' keyword. Benefit of doing this, when we are going to update 
+the values of passwordHash in our function CreatePasswordHash, their values are going to be updated in the Register function
+*/
         public async Task<User> Register(User user, string password)
         {
             byte [] passwordHash, passwordSalt;
@@ -61,9 +85,12 @@ namespace DatingApp.API.Data
             
         }
 
-        public Task<bool> UserExists(string username)
+        public async Task<bool> UserExists(string username)
         {
-            throw new System.NotImplementedException();
+            if(await _context.Users.AnyAsync(x => x.Username == username))
+                return true;
+
+            return false;
         }
     }
 }
