@@ -24,7 +24,8 @@ namespace DatingApp.API.Controllers
         public async Task<IActionResult> Register(UserForRegisterDto userForRegisterDto)
         {
             //validate request
-
+            if(!ModelState.IsValid)
+                return BadRequest(ModelState);
             //convert the username to lower to bring in consistency.
             userForRegisterDto.Username = userForRegisterDto.Username.ToLower();
 
