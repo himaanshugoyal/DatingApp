@@ -9,7 +9,9 @@ using Microsoft.EntityFrameworkCore;
 namespace DatingApp.API.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
+    [ApiController] //It reinforces attribute routing, rather than using conventinal routing   | It automatically validates our request.
+    //Note: ControllerBase | This gives access to things like, HttpResponses and Actions | MVC Controller Without View Support
+    //Note: Controller | MVC Controller with View support
     public class ValuesController : ControllerBase
     {
        //Note: If the field is private field as a naming convention

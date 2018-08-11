@@ -8,7 +8,7 @@ namespace DatingApp.API.Models
         public byte[] PasswordSalt { get; set; }
 
         //Commands to Run after creating this model
-        //dotnet ef migrationsadd AddedUserEntity 
+        //dotnet ef migrations add AddedUserEntity 
         //dotnet ef database update
     }
 }

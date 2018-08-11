@@ -25,13 +25,27 @@ namespace DatingApp.API
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        //Order is not so important
+        //Order of services is not so important
         public void ConfigureServices(IServiceCollection services)
         {
-            //
+            
            services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddCors();
+            /*Note:
+                //Inside the start up class we are going to add this as a service.
+                //When we do this, it will available for injection throughout the rest of our application
+                3 options to include Auhorization as service    
+                1. AddSingleton - We create single instance of our repository throughout application
+                It creates the instance for the first time and then we use the same object in all of the calls
+                this particular one can cause issues, when it comes to concurrent requests.
+                2. AddTransient- This one is useful for lightweight stateless services.
+                Because these are created each time they  are requested.
+                3. AddScoped - The service is created once per request within the scope.
+                It is equivalent to Singleton but within the current scope itself
+                For eg: It creates one instance for each http requests. It uses the same instance within the course of the same web requests.
+             */
+             //This will available for injection
             services.AddScoped<IAuthRepository,AuthRepository>();
         }
 
