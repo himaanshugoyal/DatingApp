@@ -46,7 +46,7 @@ namespace DatingApp.API.Data
                         return false;
                 }
             }
-            return false;
+            return true;
         }
 
         /* Note: Register

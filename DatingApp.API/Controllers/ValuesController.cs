@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using DatingApp.API.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace DatingApp.API.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController] //It reinforces attribute routing, rather than using conventinal routing   | It automatically validates our request.
     //Note: ControllerBase | This gives access to things like, HttpResponses and Actions | MVC Controller Without View Support
@@ -30,7 +32,7 @@ namespace DatingApp.API.Controllers
             var values = await _context.Values.ToListAsync();
             return Ok(values);
         }
-
+        [AllowAnonymous]
         // GET api/values/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetValue(int id)

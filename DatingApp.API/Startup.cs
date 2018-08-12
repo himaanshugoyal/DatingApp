@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using DatingApp.API.Data;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -12,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 
 namespace DatingApp.API
 {
@@ -47,6 +50,25 @@ namespace DatingApp.API
              */
              //This will available for injection
             services.AddScoped<IAuthRepository,AuthRepository>();
+            //Authentication Scheme that our application is going to use
+            /* Telling ASP.net what type of authentication are we using */
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            //Configuration
+            .AddJwtBearer(options => 
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    //validate if our key is valid
+                    ValidateIssuerSigningKey = true,
+                    //Need to convert the key into byte array
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII
+                    .GetBytes(Configuration.GetSection("AppSettings:Token").Value )),
+                    //currently our issuer is localhost and validator is audience host, so currently we are nog
+                    //going to validate that.
+                    ValidateIssuer = false,
+                    ValidateAudience = false
+                };
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -64,6 +86,7 @@ namespace DatingApp.API
 
             //  app.UseHttpsRedirection();
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            app.UseAuthentication();
             //This routes our request to the correct controller
             app.UseMvc();
         }
