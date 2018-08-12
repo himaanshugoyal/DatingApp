@@ -11,8 +11,11 @@ The Initial Commit Contains
 9. Add support for bootstrap and font-awesome
 
 Security
-1. Storing Password in the databse
-  - To add more security Add Salt to a password.
-    Salt is randomly generated string and added to the password, before the hashing takes place
-    The same password will produce many differnt hashses
-    Its stored in the database
+1. How we store password in our database
+2. Creating the user model
+3. The repository pattern
+4. Creating the Authentication Controller
+5. Data Transfer Objects
+6. Token Authentication
+7. Authentication Middleware
+  
