@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../_services/auth.service';
 
 @Component({
   selector: 'app-nav',
@@ -7,13 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavComponent implements OnInit {
   model: any = {};
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
   }
 
   login() {
-    console.log(this.model);
+    // the service is returning observable we need to subscribe to observable
+   this.authService.login(this.model).subscribe(next => {
+     console.log('Logged in Successfully');
+   }, error => {
+     console.log('Failed ot login');
+   });
   }
 
   // NOTE: Need to include formsmodule in modules
