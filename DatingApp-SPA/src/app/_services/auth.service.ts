@@ -10,24 +10,27 @@ import { map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
-baseUrl = 'http://localhost:5000/api/auth/';
+  baseUrl = 'http://localhost:5000/api/auth/';
 
-constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-login (model: any) {
-  // We might need to specify the type of content, neither authorization header as of now.
-  // We need to add code to do some thing when it comes back from the server
-  // Inorder to do something we have an observable, rxJS operators
-  // .pipe allows us to chain rxJs operators
-  // take the response and do something
-  return this.http.post(this.baseUrl + 'login', model)
-  .pipe(
-    map((response: any) => {
-      const user = response;
-      if (user) {
-        localStorage.setItem('token', user.token);
-      }
-    })
-  );
-}
+  login(model: any) {
+    // We might need to specify the type of content, neither authorization header as of now.
+    // We need to add code to do some thing when it comes back from the server
+    // Inorder to do something we have an observable, rxJS operators
+    // .pipe allows us to chain rxJs operators
+    // take the response and do something
+    return this.http.post(this.baseUrl + 'login', model).pipe(
+      map((response: any) => {
+        const user = response;
+        if (user) {
+          localStorage.setItem('token', user.token);
+        }
+      })
+    );
+  }
+
+  register(model: any) {
+    return this.http.post(this.baseUrl + 'register', model);
+  }
 }
