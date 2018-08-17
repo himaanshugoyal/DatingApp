@@ -18,4 +18,10 @@ Security
 5. Data Transfer Objects
 6. Token Authentication
 7. Authentication Middleware
+
+Client Side Login and Register
+1. Services
+2. Conditionally displaying elements to the dom
+3. Input Properties
+4. Output Properties
   
