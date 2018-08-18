@@ -34,3 +34,9 @@ Third Party Integration
 2. Angular Jwt
 3. NGX Bootstrap
 4. Bootswatch 
+
+Routing
+1. Setting up Routing
+2. Using RouterLinkActive
+3. Using Routing in Code
+4. Protecting the routes
