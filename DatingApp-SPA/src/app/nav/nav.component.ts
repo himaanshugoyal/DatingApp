@@ -26,8 +26,7 @@ export class NavComponent implements OnInit {
   // NOTE: Need to include formsmodule in modules
 
   loggedIn() {
-const token = localStorage.getItem('token');
-    return !!token; // shorthand for if statement if there is something in the token then return true else return false
+    return this.authService.loggedIn();
   }
 
   logout() {
