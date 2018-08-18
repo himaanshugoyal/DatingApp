@@ -24,4 +24,8 @@ Client Side Login and Register
 2. Conditionally displaying elements to the dom
 3. Input Properties
 4. Output Properties
+
+Error Handling
+1. Error Handling in the API
+2. Error Handline on the client (Use http interceptor to throw any error)
   
