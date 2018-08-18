@@ -29,3 +29,8 @@ Error Handling
 1. Error Handling in the API
 2. Error Handline on the client (Use http interceptor to throw any error)
   
+Third Party Integration
+1. AlertifyJs (Using third party as a service)
+2. Angular Jwt
+3. NGX Bootstrap
+4. Bootswatch 
