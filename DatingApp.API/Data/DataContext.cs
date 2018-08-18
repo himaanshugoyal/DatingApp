@@ -15,5 +15,7 @@ namespace DatingApp.API.Data
         //There is a convention to pluralise the entities
         public DbSet<Value> Values { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Photo> Photos { get; set; }
+        
     }
 }
