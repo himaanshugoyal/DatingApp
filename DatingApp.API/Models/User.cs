@@ -33,5 +33,16 @@ namespace DatingApp.API.Models
         //Commands to Run after creating this model
         //dotnet ef migrations add AddedUserEntity 
         //dotnet ef database update
+        
+        // To list the migrations
+        // dotnet ef migrations list 
+
+        // To remove migrations
+        // dotnet ef migrations remove
+
+        // To drop database
+        // dotnet ef database drop
+
+        
     }
 }
