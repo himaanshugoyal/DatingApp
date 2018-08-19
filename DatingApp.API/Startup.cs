@@ -38,6 +38,7 @@ namespace DatingApp.API
            services.AddDbContext<DataContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddCors();
+            services.AddTransient<Seed>();
             /*Note:
                 //Inside the start up class we are going to add this as a service.
                 //When we do this, it will available for injection throughout the rest of our application
@@ -76,7 +77,7 @@ namespace DatingApp.API
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         //Order is really important in this
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, Seed seeder)
         {
             if (env.IsDevelopment())
             {
@@ -103,6 +104,9 @@ namespace DatingApp.API
                // app.UseHsts();
             }
 
+            // Commented as the user data seed is completed now, if seed is required again, we can run the application again.
+            // seeder.SeedUsers();
+            
             //  app.UseHttpsRedirection();
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             app.UseAuthentication();
