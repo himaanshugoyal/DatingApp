@@ -54,6 +54,7 @@ namespace DatingApp.API
              */
              //This will available for injection
             services.AddScoped<IAuthRepository,AuthRepository>();
+            services.AddScoped<IDatingRepository, DatingRepository>();
             //Authentication Scheme that our application is going to use
             /* Telling ASP.net what type of authentication are we using */
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
