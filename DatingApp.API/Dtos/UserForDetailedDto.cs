@@ -30,6 +30,6 @@ namespace DatingApp.API.Dtos
         // Single user can have many photos
         public string PhotoUrl { get; set; }
 
-        public ICollection<Photo> Photos { get; set; }
+        public ICollection<PhotosForDetailedDto> Photos { get; set; }
     }
 }
