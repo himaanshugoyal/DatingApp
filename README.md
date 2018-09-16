@@ -40,3 +40,11 @@ Routing
 2. Using RouterLinkActive
 3. Using Routing in Code
 4. Protecting the routes
+
+Extending the API
+1. Extending the User Class
+2. More on Migrations - Scafolding
+3. Cascade Delete - Control deletion of related entity
+4. Seeding Data into our databse
+5. Creating New Repository
+6. Using Automapper
