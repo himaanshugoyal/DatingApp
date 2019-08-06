@@ -1,3 +1,5 @@
+This project is an application with ASP.NET Core WebAPI (v2.1) and Angular (v6) from start to finish
+
 # DatingApp
 The Initial Commit Contains
 1. Create a Web API Project
@@ -48,3 +50,6 @@ Extending the API
 4. Seeding Data into our databse
 5. Creating New Repository
 6. Using Automapper
+
+Tutorial Link
+https://www.udemy.com/build-an-app-with-aspnet-core-and-angular-from-scratch/
