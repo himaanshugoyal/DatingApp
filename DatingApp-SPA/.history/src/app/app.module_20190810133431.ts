@@ -36,6 +36,7 @@ import { UserService } from './_services/user.service';
       FormsModule,
       BsDropdownModule.forRoot(),
       RouterModule.forRoot(appRoutes)
+     
    ],
    providers: [
       AuthService,

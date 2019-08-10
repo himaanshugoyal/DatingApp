@@ -35,14 +35,14 @@ import { UserService } from './_services/user.service';
       HttpClientModule,
       FormsModule,
       BsDropdownModule.forRoot(),
-      RouterModule.forRoot(appRoutes)
+      RouterModule.forRoot(appRoutes),
+      UserService
    ],
    providers: [
       AuthService,
       ErrorInterceptorProvider,
       AlertifyService,
-      AuthGuard,
-      UserService
+      AuthGuard
    ],
    bootstrap: [
       AppComponent
