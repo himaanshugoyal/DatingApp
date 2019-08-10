@@ -16,16 +16,17 @@ export class MemberDetailComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.loadUser();
   }
-
   // + will convert the id from string to number
   // members /4
   loadUser() {
+    console.log(+this.route.snapshot.params['id']);
     this.userService.getUser(+this.route.snapshot.params['id']).subscribe((user: User) => {
       this.user = user;
+      console.log(user);
     }, error => {
       this.alertify.error(error);
     });
   }
-
 }
